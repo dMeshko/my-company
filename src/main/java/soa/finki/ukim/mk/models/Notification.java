@@ -21,4 +21,36 @@ public class Notification extends BaseEntity {
 
     @Enumerated(EnumType.ORDINAL)
     private NotificationType type;
+
+    public User getUserFrom() {
+        return userFrom;
+    }
+
+    public void setUserFrom(User userFrom) {
+        this.userFrom = userFrom;
+    }
+
+    public User getUserTo() {
+        return userTo;
+    }
+
+    public void setUserTo(User userTo) {
+        this.userTo = userTo;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public NotificationType getType() {
+        return type;
+    }
+
+    public void setType(NotificationType type) {
+        this.type = type;
+    }
 }

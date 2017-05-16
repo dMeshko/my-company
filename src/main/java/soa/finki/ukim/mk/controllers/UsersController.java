@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import soa.finki.ukim.mk.business.view.models.RegisterUserViewModel;
 import soa.finki.ukim.mk.business.view.models.UpdateUserViewModel;
+import soa.finki.ukim.mk.business.view.models.UserViewModel;
 import soa.finki.ukim.mk.controllers.helpers.ErrorMessageHandler;
 import soa.finki.ukim.mk.models.User;
 import soa.finki.ukim.mk.business.services.IUsersService;
@@ -25,8 +26,13 @@ public class UsersController {
     private IUsersService userService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<User> getAllUsers() {
+    public List<UserViewModel> getAllUsers() {
         return userService.getAll();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public UserViewModel getUser(@PathVariable Long id) throws Exception {
+        return userService.getById(id);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -51,7 +57,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/email/{email:.+}", method = RequestMethod.GET)
-    public User getUserByEmail(@PathVariable String email){
+    public UserViewModel getUserByEmail(@PathVariable String email) throws Exception {
         return userService.findByEmail(email);
     }
 }

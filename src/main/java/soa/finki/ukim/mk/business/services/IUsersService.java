@@ -2,6 +2,7 @@ package soa.finki.ukim.mk.business.services;
 
 import soa.finki.ukim.mk.business.view.models.RegisterUserViewModel;
 import soa.finki.ukim.mk.business.view.models.UpdateUserViewModel;
+import soa.finki.ukim.mk.business.view.models.UserViewModel;
 import soa.finki.ukim.mk.models.User;
 
 import java.util.List;
@@ -11,9 +12,10 @@ import java.util.List;
  */
 
 public interface IUsersService {
-    List<User> getAll();
+    List<UserViewModel> getAll();
+    UserViewModel getById(Long userId) throws Exception;
     Long register(RegisterUserViewModel user);
     Long update(UpdateUserViewModel user);
     Long delete(Long userId) throws Exception;
-    User findByEmail(String email);
+    UserViewModel findByEmail(String email) throws Exception;
 }

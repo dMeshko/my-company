@@ -42,6 +42,11 @@ public class User extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "userTo")
     private List<Notification> notifications;
 
+    @Override
+    public String toString(){
+        return getFirstName() + " " + getLastName();
+    }
+
     public String getFirstName() {
         return firstName;
     }
