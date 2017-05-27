@@ -13,13 +13,15 @@ public class PostViewModel {
     private String content;
     private Date createdOn;
     private UserViewModel author;
-    private ChannelViewModel channel;
+    private LookupViewModel channel;
     private List<LookupViewModel> attachments;
     private List<CommentViewModel> comments;
+    private List<UserViewModel> likes;
 
     public PostViewModel(){
         attachments = new ArrayList<>();
         comments = new ArrayList<>();
+        likes = new ArrayList<>();
     }
 
     public Long getId() {
@@ -62,11 +64,11 @@ public class PostViewModel {
         this.author = author;
     }
 
-    public ChannelViewModel getChannel() {
+    public LookupViewModel getChannel() {
         return channel;
     }
 
-    public void setChannel(ChannelViewModel channel) {
+    public void setChannel(LookupViewModel channel) {
         this.channel = channel;
     }
 
@@ -84,5 +86,13 @@ public class PostViewModel {
 
     public void setComments(List<CommentViewModel> comments) {
         this.comments = comments;
+    }
+
+    public List<UserViewModel> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<UserViewModel> likes) {
+        this.likes = likes;
     }
 }

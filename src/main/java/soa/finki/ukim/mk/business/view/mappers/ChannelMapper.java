@@ -1,6 +1,7 @@
 package soa.finki.ukim.mk.business.view.mappers;
 
 import soa.finki.ukim.mk.business.view.models.ChannelViewModel;
+import soa.finki.ukim.mk.business.view.models.LookupViewModel;
 import soa.finki.ukim.mk.models.Channel;
 
 /**
@@ -15,5 +16,9 @@ public class ChannelMapper {
         channelViewModel.setAdmin(UserMapper.mapToViewModel(channel.getAdmin()));
 
         return channelViewModel;
+    }
+
+    public static LookupViewModel mapToLookupViewModel(Channel channel){
+        return new LookupViewModel(channel.getId(), channel.getName());
     }
 }

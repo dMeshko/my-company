@@ -1,6 +1,7 @@
 package soa.finki.ukim.mk.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
 public class Channel extends BaseEntity {
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "admin_id")
     private User admin;
 
@@ -21,10 +22,13 @@ public class Channel extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "channel_id"))
     private List<User> members;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "posts_channels", joinColumns = @JoinColumn(name = "channel_id"),
-            inverseJoinColumns = @JoinColumn(name = "post_id"))
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "channel")
     private List<Post> posts;
+
+    public Channel(){
+        members = new ArrayList<>();
+        posts = new ArrayList<>();
+    }
 
     public String getName() {
         return name;

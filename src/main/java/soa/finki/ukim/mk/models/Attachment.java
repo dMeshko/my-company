@@ -15,7 +15,7 @@ public class Attachment extends BaseEntity {
     private String contentType;
     private byte[] file;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "post_id")
     private Post post;
 

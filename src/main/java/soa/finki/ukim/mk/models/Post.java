@@ -1,6 +1,7 @@
 package soa.finki.ukim.mk.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,11 +16,11 @@ public class Post extends BaseEntity {
     private String content;
     private Date createdOn;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "author_id")
     private User author;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "channel_id")
     private Channel channel;
 
@@ -28,6 +29,17 @@ public class Post extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "post")
     private List<Attachment> attachments;
+
+    @ManyToMany()
+    @JoinTable(name = "helpful_posts", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"))
+    private List<User> likes;
+
+    public Post(){
+        comments = new ArrayList<>();
+        attachments = new ArrayList<>();
+        likes = new ArrayList<>();
+    }
 
     public String getTitle() {
         return title;
@@ -83,5 +95,13 @@ public class Post extends BaseEntity {
 
     public void setAttachments(List<Attachment> attachments) {
         this.attachments = attachments;
+    }
+
+    public List<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<User> likes) {
+        this.likes = likes;
     }
 }

@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "notifications")
 public class Notification extends BaseEntity {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "sender_id")
     private User userFrom;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "receiver_id")
     private User userTo;
 

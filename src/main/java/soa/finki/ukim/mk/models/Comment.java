@@ -13,11 +13,11 @@ public class Comment extends BaseEntity {
     private String content;
     private Date createdOn;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "author_id")
     private User author;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "post_id")
     private Post post;
 
